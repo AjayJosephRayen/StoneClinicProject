@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Z7QOIQdAULRYuWXw04Hnn18pmAjbyyUqn3TBYjoBCwA=",
+  "Source": "StoneClinicAPI",
+  "BasePath": "_content/StoneClinicAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
