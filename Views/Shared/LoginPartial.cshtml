@@ -1,0 +1,78 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<style>
+    body {
+        font-family: 'Arial Rounded MT';
+    }
+
+    #button {
+        color: white;
+        margin-top: 5px;
+        background: linear-gradient(90deg, rgba(0,207,255,0.6225840678068102) 0%, rgba(17,187,231,0.5525560566023284) 42%, rgba(36,122,255,1) 100%);
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 900;
+        box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+        transition: 0.5s;
+    }
+
+        #button:hover {
+            box-shadow: none;
+        }
+
+    #btn {
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 900;
+        box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+        transition: 0.5s;
+    }
+
+        #btn:hover {
+            box-shadow: none;
+        }
+</style>
+
+<ul class="navbar-nav ">
+    @{
+        ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("uname");
+    }
+    @if (ViewBag.Data != null)
+    {
+        <li class="nav-item">
+            <a id="manage" class="nav-link-txt " asp-controller="Admin" asp-action="ViewDoctorDetails" title="View Doctors" style=" padding-left:10px;" background-color:">Doctors</a>
+        </li>
+
+        <li class="nav-item">
+            <a id="manage" class="nav-link-txt " asp-controller="Admin" asp-action="ViewPatientDetails" title="View Patients">Patients</a>
+        </li>
+
+        <li class="nav-item" style="padding-right:180px;">
+            <a id="manage" class="nav-link-txt asp-controller="Admin" asp-action="ViewAppointments" title="View Appointments">Appointments</a>
+        </li>
+        <li class="nav-item">
+            <strong><a id="manage" class="nav-link-txt " asp-controller="Admin" asp-action="Index" title="View Index">Welcome @ViewBag.Data!</a></strong>
+        </li>
+        <li class="nav-item" style="padding-right:50px;">
+            <form>
+                <a class="btn btn-danger ml-lg-3" style="color:white" id="btn" asp-area="" asp-controller="Admin" asp-action="Logout"><i class="bi bi-film"></i> Logout </a>
+            </form>
+        </li>
+    }
+
+    else
+    {
+
+        <li class="nav-item" style="padding-right:50px;padding-bottom:10px;">
+            <a class="btn btn-info ml-lg-3" id="button" style="color:white" asp-area="" asp-controller="Admin" asp-action="Login"><i class="bi bi-film"></i> Admin Login </a>
+        </li>
+    }
+</ul>

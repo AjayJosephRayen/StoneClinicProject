@@ -1,0 +1,97 @@
+﻿@model StoneClinic.Models.Patient
+
+@{
+    ViewData["Title"] = "AddPatient";
+}
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<strong style="text-align:center; font-size:50px;">ADD PATIENT</strong>
+
+
+<hr style="width:600px;" />
+<div class="row">
+
+    <p id="pt" style="color:red">@ViewBag.pat</p>
+    <div class="col-md-8">
+        <form asp-action="AddPatient">
+            <table height="350px">
+                <tr>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <th>
+
+                        <label asp-for="Fname" class="control-label">First Name<sup style="color:red">*</sup></label>
+                    </th>
+                    <td>
+                        <input asp-for="Fname" class="form-control" required style="width:350px;" />
+                        <span asp-validation-for="Fname" class="text-danger"></span>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="Lname" class="control-label"></label>
+                    </th>
+                    <td>
+                        <input asp-for="Lname" class="form-control" />
+                        <span asp-validation-for="Lname" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label>Gender <sup style="color:red">*</sup></label><br />
+                    </th>
+                    <td>
+                        <input asp-for="Sex" type="radio" id="gender" value="M" required />
+                        <label for="M">M</label>
+                        <input asp-for="Sex" type="radio" id="gender" value="F" />
+                        <label for="F">F</label>
+                        <input asp-for="Sex" type="radio" id="gender" value="O" />
+                        <label for="O">O</label>
+                        <span asp-validation-for="Sex" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="Dob">Date of Birth<sup style="color:red">*</sup></label>
+                    </th>
+
+                    <td>
+                        <input asp-for="Dob" class="form-control" type="date" required />
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="Age" class="control-label">Age<sup style="color:red">*</sup></label>
+                    </th>
+                    <td>
+                        <input asp-for="Age" class="form-control" required />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="Add Patient" class="btn btn-success" style="color:white" />
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="gif" style=" margin-bottom:50%;position:absolute;left:60%;top:13%; ">
+    <img src="../images/patient5.gif" style="height:600px;">
+</div>
+<div>
+    <a class="btn btn-warning" style="color:white" asp-action="Index">Back</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

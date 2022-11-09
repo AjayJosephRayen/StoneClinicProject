@@ -1,0 +1,176 @@
+﻿@model StoneClinic.Models.Appointmentfixing;
+@{
+    ViewData["Title"] = "AddDoctor";
+}
+@*<-----------------style--------------------->*@
+<style>
+   body{
+       overflow:hidden;
+   }
+    #warning{       
+       bottom:56%;
+       left:0%;
+       height:30px;
+       width:480px;
+       padding:5px;
+       padding-left:28px;
+       font-size:small;             
+    }
+    .div2{
+        padding-left:69px;
+    }
+    #table2{
+       
+        float:right;
+        background-color: sandybrown;
+         border-radius:20px;
+       margin-top: 85px;
+       color:black;               
+    }
+    #warning svg{
+        padding-right:3px;
+    }
+    #warning1{
+        
+        top:51%;
+        padding-left: 558px;
+       
+        position:absolute;
+    }   
+</style>
+@*<-----------------style--------------------->*@
+<div>
+    <a asp-action="ViewDoctorDetails" class="btn btn-warning" style="color:white">Back</a>
+</div>
+
+<strong style="text-align:center; font-size:50px;">ADD APPOINTMENTS</strong>
+<hr />
+<div class="row"id="apt">
+    <div class="col-md-12">
+        <form asp-action="AddAppointment">
+            <table rule="all" class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Doctorid)</th>
+                        <th> @Html.DisplayNameFor(model => model.Doctorname)</th>
+                        <th> @Html.DisplayNameFor(model => model.Specialization)</th>
+                        <th> @Html.DisplayNameFor(model => model.VisitingHours)</th>                       
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayFor(model => model.Doctorid)</td>
+                        <td> @Html.DisplayFor(model => model.Doctorname)</td>
+                        <td>@Html.DisplayFor(model => model.Specialization)</td>
+                        <td> @Html.DisplayFor(model => model.VisitingHours)</td>
+                    </tr>
+                </thead>
+            </table>
+            <div class="div2">
+            <div class="col-md-7" id="table2">
+                <table class="table" style="color:#111">
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Appointment Time</th>
+                        <th>Date of Visit</th>                      
+                        <th>Appointment ID</th>
+                    </tr>
+                    @foreach (var item in Model.appointmentlist)
+                    {
+                        <tr>
+                            <td>@item.Patientid</td>
+                            <td>@item.Appointmenttime : 00</td>
+                            <td>@Html.DisplayFor(model => item.Dateofvisit)</td>                            
+                            <td>@item.Appointmentid</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            </div>
+            <table  height="350px" style="padding-top:30px;">
+                <tr>
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <th>
+                        <label asp-for="Patientid" class="control-label">Patient ID<sup style="color:red">*</sup></label>
+                    </th>
+                    <td>
+                        <select asp-for="Patientid" class="form-select">
+                            @foreach (var item in Model.patientlist)
+                            {
+                                <option value=@item.Patientid>@item.Patientid</option>
+                            }
+                        </select>
+                    </td>
+
+                </tr>              
+                <tr>
+                    <th>
+                        <label asp-for="Appointmenttime" class="control-label">Appointment Time<sup style="color:red">*</sup></label>
+                    </th>
+                    <td>
+                        <select asp-for="Appointmenttime" class="form-select">
+                            <option selected disabled >Choose as per Doctor's Availability</option>
+
+                            @for (var i = 1; i < 23; i++)
+                            {
+                                <option value=@i>@i : 00</option>
+                            }
+                        </select>
+                         <span asp-validation-for="Appointmenttime" class="text-danger"></span>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="Dateofvisit" class="control-label">Date of Visit<sup style="color:red">*</sup></label>
+                    </th>
+                    <td>
+                        <input asp-for="Dateofvisit" class="form-select" id="AppointmentDate" type="date" onchange="Getdate()" asp-format="{0:dd/MM/yyyy}" required />
+                        <span asp-validation-for="Dateofvisit" class="text-danger"></span> 
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="Add Appointment" class="btn btn-success" />
+                    </th>
+                </tr>
+
+                <tr>
+                    <th></th>
+                </tr>
+            </table>
+        </form>
+        <div class="alert alert-warning" id="warning">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"><path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z" /></svg><strong>Warning!</strong> Please choose timings as per Doctor's Visiting Hours !!!
+        </div>
+       
+    </div>
+</div>
+<div id="warning1">
+    <h3 style="font-size:20px;color:red;">
+        (Please check the below table before booking Appointment to avoid duplication)
+    </h3>
+</div>
+<script>
+    function Getdate() {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var minDate = year + '-' + month + '-' + day;
+
+        $('#AppointmentDate').attr('min', minDate);
+    }
+</script>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+

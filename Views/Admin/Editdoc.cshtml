@@ -1,0 +1,76 @@
+﻿@model StoneClinic.Models.Doctordetail
+
+@{
+    ViewData["Title"] = "Editdoc";
+}
+
+<div>
+    <a asp-action="ViewDoctorDetails" class="btn btn-warning" style="color:white">Back</a>
+</div>
+<br />
+<br />
+
+<h4>Doctor Detail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editdoc">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Doctorid" />
+            <div class="form-group">
+                <label asp-for="Firstname" class="control-label"></label>
+                <input asp-for="Firstname" class="form-control" />
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Lastname" class="control-label"></label>
+                <input asp-for="Lastname" class="form-control" />
+                <span asp-validation-for="Lastname" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+                <input asp-for="Sex" type="radio" id="gender" value="M" required />
+                <label for="M">M</label>
+                <input asp-for="Sex" type="radio" id="gender" value="F" />
+                <label for="F">F</label>
+                <input asp-for="Sex" type="radio" id="gender" value="O" />
+                <label for="O">O</label>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Specialization" class="control-label"></label>
+                <select asp-for="Specialization" class="form-select" required>
+
+                    <option value="General">General</option>
+                    <option value="Internal Medicine">Internal Medicine</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="VisitingHours" class="control-label"></label>
+                <select asp-for="VisitingHours" class="form-select" required>
+                    <option>10.00hrs - 18.00hrs</option>
+                    <option>08.00hrs - 16.00hrs</option>
+                    <option>07.00hrs - 12.00hrs</option>
+                    <option>11.00hrs - 19.00hrs</option>
+                    <option>14.00hrs - 22.00hrs</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,143 @@
+﻿@model StoneClinic.Models.AdminDatum;
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    ViewData["Title"] = "login";
+    ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("Error");
+
+}
+<style>
+    body {
+        font-family: 'Arial Rounded MT';
+        background-image: url(https://wallpaperboat.com/wp-content/uploads/2020/09/21/55222/medical-10-920x518.jpg);
+        background-size: cover;
+        overflow: hidden;
+        color: #181818;
+        height: 100vh;
+    }
+
+    #img {
+        float: left;
+        padding-right: 100px;
+        padding-top: 150px;
+        border-radius: 50%;
+        opacity: 0.9;
+    }
+
+    .head {
+        font-size: 26px;
+        color: white;
+        padding-left: 47px;
+        top:40px;
+        position:absolute;
+        text-shadow: 1px 2px 1px black;
+        
+    }
+
+
+
+    .row {
+        width: 350px;
+        border-radius: 20px;
+        padding: 30px;
+        box-sizing: border-box;
+        background: linear-gradient(90deg, rgba(0,207,255,0.6225840678068102) 0%, rgba(17,187,231,0.5525560566023284) 42%, rgba(36,122,255,1) 100%);
+        box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px grey;
+        margin: 0px;
+        position: absolute;
+        left: 65%;
+    }
+
+
+    #button {
+        color: white;
+        margin-top: 20px;
+        background: linear-gradient(90deg, rgba(0,207,255,0.6225840678068102) 0%, rgba(17,187,231,0.5525560566023284) 42%, rgba(36,122,255,1) 100%);
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 900;
+        box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+        transition: 0.5s;
+    }
+
+        #button:hover {
+            box-shadow: none;
+        }
+
+    #txt {
+        border-radius: 20px;
+        opacity: 0.6;
+    }
+
+        #txt:hover {
+            opacity: 1;
+        }
+
+    .xyz {
+        height: 85vh;
+    }
+
+    .abc {
+        height: 15vh;
+    }
+</style>
+@if (ViewBag.Data == "Error")
+{
+    <div class="alert alert-danger">
+        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path d="M12 5.177l8.631 15.823h-17.262l8.631-15.823zm0-4.177l-12 22h24l-12-22zm-1 9h2v6h-2v-6zm1 9.75c-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25 1.25.56 1.25 1.25-.561 1.25-1.25 1.25z" /></svg>  <strong> You have entered Incorrect Username and Password !!!</strong>
+    </div>
+
+}
+<div id="img">
+    <img src="../images/Stone.png" />
+</div>
+<div class="abc"></div>
+<div class="xyz">
+    <div class="row">
+
+        <div class="col-md-11">
+            <div class="head">
+                <strong>ADMIN LOGIN</strong>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div id="login">
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"><strong style="color:white;padding:15px">USERNAME</strong></label>
+
+                        <input asp-for="Username" type="text" class="form-control" id="txt" required />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"><strong style="color:white;padding:17px">PASSWORD</strong></label>
+                        <input asp-for="Password" type="Password" class="form-control" id="txt" title=" The Password field is required" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <input type="submit" value="Login" id="button"  class="btn btn-info" style="color:white" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+

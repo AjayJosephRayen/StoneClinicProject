@@ -1,0 +1,72 @@
+﻿@model IEnumerable<StoneClinic.Models.Patient>
+
+@{
+    ViewData["Title"] = "ViewPatientDetails";
+}
+<style>
+    #id {
+        align-items: center;
+    }
+</style>
+<div id="head" style="text-align:center">
+    <strong style="text-align:center; font-size:40px;">LIST OF PATIENTS</strong>
+</div>
+
+<p>
+    <a class=" btn btn-info" asp-action="AddPatient" style="color:white">Add Patient</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Patient ID
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Date Of Birth
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patientid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dob)
+                </td>
+                <td>
+                    <a class=" btn btn-warning" style="color:white" asp-action="EditPat" asp-route-id="@item.Patientid">Edit</a> |
+
+                    <a class=" btn btn-danger" asp-action="DeletePat" asp-route-id="@item.Patientid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

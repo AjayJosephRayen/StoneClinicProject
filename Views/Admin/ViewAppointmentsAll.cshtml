@@ -1,0 +1,62 @@
+﻿@model IEnumerable<StoneClinic.Models.Appointment>
+
+@{
+    ViewData["Title"] = "ViewAppointments";
+}
+<div style="text-align:center">
+<strong style="text-align:center; font-size:40px;">LIST OF ALL APPOINTMENTS</strong>
+</div>
+<p>
+    <a class=" btn btn-info" asp-action="ViewDoctorDetails"style="color:white">Add Appointments</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Patientid)
+            </th>            
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Appointmenttime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dateofvisit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctorid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialization)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patientid)
+                </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Appointmenttime) : 00
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateofvisit)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctorid)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialization)
+            </td>
+            
+            <td>
+
+
+                    <a class=" btn btn-danger" asp-action="CancelAppointment" asp-route-id="@item.Appointmentid">Cancel Appointment</a>
+            </td>
+        </tr>
+}
+    </tbody>

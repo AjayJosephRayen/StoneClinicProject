@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        font-family: 'Arial Rounded MT';
+        overflow: hidden;
+        background-image: url(https://www.lifebridgehealth.org/Uploads/Public/Images/Blog%20Images/GettyImages%20Hospital%20Staff.jpg);
+        color: #181818;
+        height: 100vh;
+    }
+
+    .text1 {
+        position: absolute;
+        float: left;
+        padding-top: 145px;
+    }
+
+        .text1 img:hover {
+            height: 330px;
+            width: 330px;
+            transition: 0.5s ease-in-out;
+        }
+
+    .text2 {
+        float: left;
+        padding-top: 11.5%;
+        padding-left: 36.5%;
+    }
+
+        .text2 img:hover {
+            height: 330px;
+            width: 330px;
+            transition: 0.5s ease-in-out;
+        }
+
+    .text3 {
+        padding-left: 73%;
+        padding-top: 150px;
+    }
+
+        .text3 img:hover {
+            height: 330px;
+            width: 330px;
+            transition: 0.5s ease-in-out;
+        }
+
+    .para1 {
+        position: absolute;
+        font-size: 30px;
+        left: 10.5%;
+        top: 37%;
+        color: white;
+        text-shadow: 2px 2px 1px black;
+    }
+
+    .para2 {
+        position: absolute;
+        font-size: 30px;
+        left: 41.5%;
+        top: 37%;
+        color: white;
+        text-shadow: 2px 2px 1px black;
+    }
+
+    .para3 {
+        position: absolute;
+        font-size: 30px;
+        left: 72%;
+        top: 37%;
+        color: white;
+        text-shadow: 2px 2px 1px black;
+    }
+</style>
+<body>
+
+    <div class="text1">
+        <a asp-action="AddDoctor"><img src="../images/doc.jpeg" height="300px" width="300px" style="border-radius:30%" title="Add Doctor" /></a>
+    </div>
+    <div class="text2">
+        <a asp-action="AddPatient"><img src="../images/patient.jpg" height="300px" width="300px" style="border-radius:30%" title="Add Patient" /></a>
+    </div>
+    <div class="text3">
+        <a asp-action="ViewAppointments"><img src="../images/appt.jpg" height="300px" width="300px" style="border-radius:30%" title="View Appointments" /></a>
+
+    </div>
+
+    <div class="para1">
+        <strong>ADD DOCTOR</strong>
+    </div>
+    <div class="para2">
+        <strong>ADD PATIENT</strong>
+    </div>
+    <div class="para3">
+        <strong>APPOINTMENTS</strong>
+    </div>
+
+</body>
+@*style="padding-block:10px"*@

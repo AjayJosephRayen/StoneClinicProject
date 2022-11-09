@@ -1,0 +1,52 @@
+﻿@model StoneClinic.Models.Appointment
+
+@{
+    ViewData["Title"] = "CancelAppointment";
+}
+
+
+
+<h3>Are you sure you want to Cancel this Appointment?</h3>
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Patientid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Patientid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Doctorid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Doctorid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Specialization)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Specialization)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dateofvisit)
+        </dt>
+        <dd class = "col-sm-10">
+             @Html.DisplayFor(model => model.Dateofvisit) 
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointmenttime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Appointmenttime)
+        </dd>
+    </dl>
+    
+    <form asp-action="CancelAppointment">
+        <input type="hidden" asp-for="Appointmentid" />
+        <input type="submit" value="Yes,Cancel" class="btn btn-success" /> |
+        <a class="btn btn-warning" style="color:white" asp-action="ViewAppointments">Back</a>
+    </form>
+</div>
